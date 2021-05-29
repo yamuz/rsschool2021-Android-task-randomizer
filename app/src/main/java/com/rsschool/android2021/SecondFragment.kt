@@ -6,7 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
+import kotlin.random.Random
 
 class SecondFragment : Fragment() {
 
@@ -29,16 +32,22 @@ class SecondFragment : Fragment() {
         val min = arguments?.getInt(MIN_VALUE_KEY) ?: 0
         val max = arguments?.getInt(MAX_VALUE_KEY) ?: 0
 
-        result?.text = generate(min, max).toString()
+        val gen = generate(min, max)
+        result?.text = if (gen>0) gen.toString() else ""
 
         backButton?.setOnClickListener {
             // TODO: implement back
+            (activity as MainActivity).openFirstFragment(Integer.parseInt(result?.text.toString()))
+
         }
     }
 
     private fun generate(min: Int, max: Int): Int {
         // TODO: generate random number
-        return 0
+        if (max < min)
+            return -1
+        //val rnd = Random.nextInt(min, max)
+        return Random.nextInt(min, max)
     }
 
     companion object {
@@ -49,7 +58,9 @@ class SecondFragment : Fragment() {
             val args = Bundle()
 
             // TODO: implement adding arguments
-
+            args.putInt(MIN_VALUE_KEY, min)
+            args.putInt(MAX_VALUE_KEY, max)
+            fragment.arguments = args
             return fragment
         }
 

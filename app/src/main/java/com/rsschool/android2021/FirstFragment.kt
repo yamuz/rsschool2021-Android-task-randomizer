@@ -1,17 +1,23 @@
 package com.rsschool.android2021
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 
 class FirstFragment : Fragment() {
 
     private var generateButton: Button? = null
     private var previousResult: TextView? = null
+    private lateinit var min: EditText
+    private lateinit var max: EditText
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,11 +35,23 @@ class FirstFragment : Fragment() {
         val result = arguments?.getInt(PREVIOUS_RESULT_KEY)
         previousResult?.text = "Previous result: ${result.toString()}"
 
-        // TODO: val min = ...
+        min = view.findViewById(R.id.min_value)
+        max = view.findViewById(R.id.max_value)
         // TODO: val max = ...
 
         generateButton?.setOnClickListener {
-            // TODO: send min and max to the SecondFragment
+            val minVlaue = Integer.parseInt(min?.text.toString())
+            val maxVlaue = Integer.parseInt(max?.text.toString())
+            if (maxVlaue - minVlaue < 0) {
+                val toast: Toast =
+                    Toast.makeText(activity, "Check the values and try again!", Toast.LENGTH_SHORT)
+                toast.show()
+            } else {
+                (activity as MainActivity).openSecondFragment(
+                    Integer.parseInt(min?.text.toString()),
+                    Integer.parseInt(max?.text.toString())
+                )
+            }
         }
     }
 
