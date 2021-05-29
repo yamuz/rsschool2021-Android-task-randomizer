@@ -1,6 +1,5 @@
 package com.rsschool.android2021
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,6 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 
 class FirstFragment : Fragment() {
 
@@ -40,16 +38,16 @@ class FirstFragment : Fragment() {
         // TODO: val max = ...
 
         generateButton?.setOnClickListener {
-            val minVlaue = Integer.parseInt(min?.text.toString())
-            val maxVlaue = Integer.parseInt(max?.text.toString())
-            if (maxVlaue - minVlaue < 0) {
+            val minValue = Integer.parseInt(min.text.toString())
+            val maxValue = Integer.parseInt(max.text.toString())
+            if (maxValue - minValue < 0) {
                 val toast: Toast =
                     Toast.makeText(activity, "Check the values and try again!", Toast.LENGTH_SHORT)
                 toast.show()
             } else {
                 (activity as MainActivity).openSecondFragment(
-                    Integer.parseInt(min?.text.toString()),
-                    Integer.parseInt(max?.text.toString())
+                    Integer.parseInt(min.text.toString()),
+                    Integer.parseInt(max.text.toString())
                 )
             }
         }
