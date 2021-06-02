@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-public class MainActivity extends AppCompatActivity {
+import com.rsschool.android2021.interfaces.RandomListener;
+
+public class MainActivity extends AppCompatActivity implements RandomListener {
 
     private final String MIN_VALUE_KEY = "MIN_VALUE";
     private final String MAX_VALUE_KEY = "MAX_VALUE";
@@ -35,5 +37,10 @@ public class MainActivity extends AppCompatActivity {
         final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, secondFragment);
         transaction.commit();
+    }
+
+    @Override
+    public void onButtonPressed(int min, int max) {
+        openSecondFragment(min, max);
     }
 }
