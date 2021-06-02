@@ -41,10 +41,11 @@ class FirstFragment : Fragment() {
 
         min.doOnTextChanged{ _, _, _, _ ->
             var error = ""
-            val minValue = 0L
+            var minValue = 0L
             if (min.text.toString() == "") {
                 error = "Заполните значения и попробуйте снова"
             } else {
+                minValue = min.text.toString().toLong()
                 if (minValue > Int.MAX_VALUE)
                     error = "Минимальное значение слишком большое"
             }
