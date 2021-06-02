@@ -33,7 +33,7 @@ class SecondFragment : Fragment() {
         val max = arguments?.getInt(MAX_VALUE_KEY) ?: 0
 
         val gen = generate(min, max)
-        result?.text = if (gen>=0) gen.toString() else ""
+        result?.text =  if (gen>=0) gen.toString() else ""
 
         backButton?.setOnClickListener {
             // TODO: implement back

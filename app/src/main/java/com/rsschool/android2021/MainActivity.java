@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements RandomListener {
         transaction.commit();
     }
 
-    @Override
+    @Override //impl interface
     public void onButtonPressed(int min, int max) {
         openSecondFragment(min, max);
     }
